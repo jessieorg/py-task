@@ -48,13 +48,13 @@ def run_task(task_name: str, fun: Callable[..., tuple[int, str | int | float]], 
         raise Exception(e)
     
     end_time = time.time()
-    if isinstance(msg, str) or isinstance(msg, int):
+    if isinstance(msg, str) or isinstance(msg, int) or isinstance(msg, float):
         print_log("###耗时:%s %s status:%s msg:%s" % (end_time - start_time, task_name, status, msg))
     else:
         print_log("###耗时:%s %s status:%s msg:%s" % (end_time - start_time, task_name, status, ""))
     
     if status != 0:
-        if isinstance(msg, str) or isinstance(msg, int):
+        if isinstance(msg, str) or isinstance(msg, int) or isinstance(msg, float):
             message = encode_str("task[%s]执行异常, status:%s, msg:%s" % (task_name, status, msg))
         else:
             message = encode_str("task[%s]执行异常, status:%s, msg:%s" % (task_name, status, ""))
